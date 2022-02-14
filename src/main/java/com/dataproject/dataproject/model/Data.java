@@ -1,37 +1,34 @@
 package com.dataproject.dataproject.model;
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
-
-
-
 @Document
-public class Data{
+public class Data {
 
     @Id
     private String id;
 
     private BatteryData batteryData;
+
     private Module1 module1;
+
     private Time time;
 
     public Data(String id, BatteryData batteryData,
-     Module1 module1,
-     
-      Time time) {
+            Module1 module1,
+
+            Time time) {
         this.id = id;
         this.batteryData = batteryData;
         this.module1 = module1;
         this.time = time;
     }
-    public Data(){
+
+    public Data() {
 
     }
 
@@ -39,7 +36,7 @@ public class Data{
     public String getId() {
         return id;
     }
-    
+
     @JsonSetter
     public void setId(String id) {
         this.id = id;
@@ -68,6 +65,5 @@ public class Data{
     public void setTime(Time time) {
         this.time = time;
     }
-
 
 }

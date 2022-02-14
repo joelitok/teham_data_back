@@ -14,24 +14,22 @@ public class Time {
     @Id
     private String id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date time;
-
 
     public Time(String id, Date time) {
         this.id = id;
         this.time = time;
     }
-    public Time(){
+
+    public Time() {
 
     }
-
 
     @JsonIgnore
     public String getId() {
         return id;
     }
-
 
     @JsonSetter
     public void setId(String id) {
@@ -42,9 +40,8 @@ public class Time {
         return time;
     }
 
-
     public void setTime(Date time) {
         this.time = time;
     }
-    
+
 }

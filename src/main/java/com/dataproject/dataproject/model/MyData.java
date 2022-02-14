@@ -12,6 +12,8 @@ public class MyData {
     @Id
     private String id;
 
+    private String bacteryDataIndex;
+
     private Data data;
 
     public MyData(String id, Data data) {
@@ -19,8 +21,8 @@ public class MyData {
         this.data = data;
     }
 
-    public MyData(){
-        
+    public MyData() {
+
     }
 
     @JsonIgnore
@@ -36,11 +38,19 @@ public class MyData {
     public Data getData() {
         return data;
     }
-    
+
     public void setData(Data data) {
         this.data = data;
     }
-    
-    
-    
+
+    @JsonIgnore
+    public String getBacteryDataIndex() {
+        return bacteryDataIndex;
+    }
+
+    @JsonSetter
+    public void setBacteryDataIndex(String bacteryDataIndex) {
+        this.bacteryDataIndex = bacteryDataIndex;
+    }
+
 }

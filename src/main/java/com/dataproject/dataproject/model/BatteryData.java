@@ -6,26 +6,24 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @Document
 public class BatteryData {
-    
+
     @Id
     private String id;
 
     private int voltage;
     private int outputVoltage;
-    
+
     public BatteryData(String id, int voltage, int outputVoltage) {
         this.id = id;
         this.voltage = voltage;
         this.outputVoltage = outputVoltage;
     }
 
-    public BatteryData(){
+    public BatteryData() {
 
     }
-
 
     @JsonIgnore
     public String getId() {
