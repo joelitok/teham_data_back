@@ -1,13 +1,9 @@
 package com.dataproject.dataproject.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.dataproject.dataproject.dao.BatteryDataRepository;
-import com.dataproject.dataproject.dao.DataRepository;
-import com.dataproject.dataproject.dao.Module1Repository;
-import com.dataproject.dataproject.dao.MyDataRepository;
-import com.dataproject.dataproject.dao.TimeRepository;
-import com.dataproject.dataproject.model.MyData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +20,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.dataproject.dataproject.dao.BatteryDataRepository;
+import com.dataproject.dataproject.dao.DataRepository;
+import com.dataproject.dataproject.dao.Module1Repository;
+import com.dataproject.dataproject.dao.MyDataRepository;
+import com.dataproject.dataproject.dao.TimeRepository;
+import com.dataproject.dataproject.model.MyData;
 
 @CrossOrigin("*")
 @RestController
@@ -65,15 +68,16 @@ public class DataController {
 
    // rechercher un element suivant le module 1 entrer
    @RequestMapping(value = "/search/{name}", method = RequestMethod.GET)
-   public List<MyData> getMyDataByModulesn(@PathVariable String name) {
-
+   public Map<String, List<MyData>> getMyDataByModulesn(@PathVariable String name) {
       // rechercher la table data correspondante
       Query queryMyData = new Query();
       queryMyData.addCriteria(Criteria.where("bacteryDataIndex").is(name));
       List<MyData> myData = mongoTemplate.find(queryMyData, MyData.class);
 
-      return myData;
-
+      Map<String, List<MyData>> map = new HashMap<>();
+      map.put("data", myData);
+      
+      return map;
    }
 
    // ajouter un element data dans la base de donnees
